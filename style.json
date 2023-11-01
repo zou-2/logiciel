@@ -1,0 +1,53 @@
+{
+	"QMainWindow":[
+		{
+			"tittle":"Espace client OM",
+			"icon":"",
+			"frameless": true,
+			"transluscentBg": true,
+			"sizeGrip": "frame_6",
+			"navigation":[
+				{    
+					"minimize":"pushButton",
+					"close": "pushButton_2",
+					"restore":[
+						{	
+							"buttonName": "pushButton_3",
+							"normalIcon": ":/icons/UI/squareBlack.svg",
+							"maximizedIcon": ":/icons/UI/copyBlack.svg"
+						}
+					],
+					"moveWindow": "Header",
+					"tittleBar": "Header"
+				}
+			]
+		}
+		
+	],
+	"QStackedWidget":[
+		{
+			"name":"mainPage",
+			"navigation":[
+				{
+					"navigationButtons":[
+						{
+							"btnTableau": "page",
+							"btnProspects": "page_2"
+						}
+					]
+				}
+			]
+	
+		}
+	]
+}
+
+
+
+
+
+
+
+
+
+

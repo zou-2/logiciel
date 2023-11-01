@@ -1,0 +1,164 @@
+self.nom_label = self.labelNom
+        self.telephone_label = self.labelTelephone
+        self.activite_label = self.labelActivite
+        self.date_label = self.labelDate
+        self.email_label = self.labelEmail
+        self.description_label = self.labelDescription
+
+        self.nom_label.setText("")
+        self.telephone_label.setText("")
+        self.activite_label.setText("")
+        self.date_label.setText("")
+        self.email_label.setText("")
+        self.description_label.setText("")
+
+
+        self.nom_input = self.inputNom
+        self.telephone_input = self.inputTelephone
+        self.activite_input = self.inputActivite
+        self.date_input = self.inputDate
+        self.email_input = self.inputEmail
+        self.description_input = self.inputDescription
+
+
+        self.nom_input.setPlaceholderText("Nom*")
+        self.telephone_input.setPlaceholderText("Téléphone*")
+        self.activite_input.setPlaceholderText("Activité*")
+        self.date_input.setPlaceholderText("Date*")
+        self.email_input.setPlaceholderText("Email*")
+        self.description_input.setPlaceholderText("Description*")
+
+
+        self.nom_input.setClearButtonEnabled(True)
+        self.telephone_input.setClearButtonEnabled(True)
+        self.activite_input.setClearButtonEnabled(True)
+        self.date_input.setClearButtonEnabled(True)
+        self.email_input.setClearButtonEnabled(True)
+        self.description_input.setClearButtonEnabled(True)
+
+
+        self.btnAjouter.setEnabled(False)
+
+        icon = QIcon(":icons/UI/x2.svg")
+        self.nom_input.findChildren(QAction)[0].setIcon(icon)
+        self.telephone_input.findChildren(QAction)[0].setIcon(icon)
+        self.activite_input.findChildren(QAction)[0].setIcon(icon)
+        self.date_input.findChildren(QAction)[0].setIcon(icon)
+        self.email_input.findChildren(QAction)[0].setIcon(icon)
+        self.description_input.findChildren(QAction)[0].setIcon(icon)
+
+
+        self.nom_input.textChanged.connect(self.do_nom_label)
+        self.telephone_input.textChanged.connect(self.do_telephone_label)
+        self.inputActivite.textChanged.connect(self.do_Activite_label)
+        self.inputEmail.textChanged.connect(self.do_email_label)
+        self.inputDate.textChanged.connect(self.do_date_label)
+        self.inputDescription.textChanged.connect(self.do_description_label)
+
+
+
+
+
+        self.inputNom.textChanged.connect(self.checkFields)
+        self.inputTelephone.textChanged.connect(self.checkFields)
+        self.inputActivite.textChanged.connect(self.checkFields)
+        self.inputDate.textChanged.connect(self.checkFields)
+        self.inputEmail.textChanged.connect(self.checkFields)
+        self.inputDescription.textChanged.connect(self.checkFields)
+
+
+
+        self.btnAnnuler.clicked.connect(MainWindow.close)
+        self.btnAjouter.clicked.connect(self.ajouter)
+
+
+
+
+
+
+
+
+
+
+def ajouter(self):
+        
+        Nom = self.inputNom.text()
+        Telephone = self.inputTelephone.text()
+        Activite = self.inputActivite.text()
+        Date = self.inputDate.text()
+        Email = self.inputEmail.text()
+        Description = self.inputDescription.text()
+                     
+        
+        # connexion à la base de données
+        con = sqlite3.connect(database_path)
+        cur = con.cursor()
+        cur.execute("insert into Prospects (Nom,Telephone,Email,Activite,Date,Description)values (?,?,?,?,?,?)", (Nom,Telephone,Email,Activite,Date,Description))
+        RqtResult = cur.fetchall()
+        con.commit()   
+        
+        con.close()    
+        
+        self.inputNom.setText("")
+        self.inputTelephone.setText("")
+        self.inputActivite.setText("")
+        self.inputDate.setText("")
+        self.inputEmail.setText("")
+        self.inputDescription.setText("")    
+        MainWindow.close()
+        
+
+    
+    def do_nom_label(self, text):
+        if text:
+            self.nom_label.setText("Nom*")
+            
+        else:
+            self.nom_label.setText("")
+            
+    def do_telephone_label(self, text):
+        if text:
+            self.telephone_label.setText("Téléphone*")
+            
+        else:
+            self.telephone_label.setText("")
+            
+    def do_Activite_label(self, text):
+        if text:
+            self.activite_label.setText("Activité*")
+            
+        else:
+            self.activite_label.setText("")
+            
+    def do_date_label(self, text):
+        if text:
+            self.date_label.setText("Date*")
+            
+        else:
+            self.date_label.setText("")
+            
+    def do_email_label(self, text):
+        if text:
+            self.email_label.setText("Email*")
+            
+        else:
+            self.email_label.setText("")
+            
+    def do_description_label(self, text):
+        if text:
+            self.description_label.setText("Description*")
+            
+        else:
+            self.description_label.setText("")
+            
+            
+    def checkFields(self):
+        nom_text = self.inputNom.text()
+        telephone_text = self.inputTelephone.text()
+        activite_text = self.inputActivite.text()
+        date_text = self.inputDate.text()
+        email_text = self.inputEmail.text()
+        description_text = self.inputDescription.text()
+        
+        enable_button = bool(nom_text and telephone_text and activite_text and date_text and email_text and description_text)
+        self.btnAjouter.setEnabled(enable_button) 
