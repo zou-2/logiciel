@@ -12,6 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QIcon
 import sqlite3
 import os
+import sys
 
 
 # Obtenez le chemin absolu du répertoire du script
@@ -344,7 +345,7 @@ class Ui_MainWindow(object):
 import resources_rc
 
 if __name__ == "__main__":
-    import sys
+    
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()

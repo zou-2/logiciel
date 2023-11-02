@@ -9,6 +9,7 @@
 ################################################################################
 
 import sqlite3
+import subprocess
 from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
@@ -16,10 +17,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from Custom_Widgets.Widgets import QCustomStackedWidget
 
-import os,main
+import os
 import Session
-import mainAjout
-# from mainAjout import main_window  # Importez la variable main_window
+# from mainAjout import *
+
 
 # from mainAjout import MainWindow
 
@@ -399,13 +400,14 @@ class Ui_MainWindow(object):
     
     
     def appelAjoutProspect(self):
-        print("tafiditra ato")
-        prospect_window = mainAjout.main_window()
+        subprocess.Popen(["python", "mainAjout.py"])   
+        # print("tafiditra ato")
+        # prospect_window = MainWindow()
         
-        prospect_window.show()
-        print("tonga et ambany")
+        # # prospect_window.show()
+        # print("tonga et ambany")
         
-        # MainWindow.close()
+        # # MainWindow.close()
     
     def user(self):
         UserPrenom = Session.user_data['prenom']
@@ -499,8 +501,8 @@ class Ui_MainWindow(object):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
+    mainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    ui.setupUi(mainWindow)
+    mainWindow.show()
     sys.exit(app.exec_())
